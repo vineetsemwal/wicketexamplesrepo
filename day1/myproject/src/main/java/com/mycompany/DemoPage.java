@@ -18,10 +18,15 @@ public class DemoPage extends WebPage {
         super(new Model<>(product));
     }
 
+
     @Override
     protected void onInitialize() {
         super.onInitialize();
         PageParameters parameters= getPageParameters();
+        List<StringValue>idValues=parameters.getValues("productid");
+        StringValue idValue=idValues.get(0);
+        int productId=idValue.toOptionalInteger();
+        System.out.println("In demopage,product id="+productId);
         Set<String> keys=parameters.getNamedKeys();
         for (String key:keys){
             System.out.println("param key="+key);

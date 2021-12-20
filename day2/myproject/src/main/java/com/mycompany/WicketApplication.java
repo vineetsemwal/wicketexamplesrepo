@@ -29,7 +29,7 @@ public class WicketApplication extends WebApplication
 	{
 		super.init();
 
-		mountPage("demo",DemoPage.class);
+		mountPage("detach",DetachableModelDemoPage.class);
 
 	}
 
