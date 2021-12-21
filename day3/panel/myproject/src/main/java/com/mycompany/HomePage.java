@@ -26,10 +26,19 @@ public class HomePage extends WebPage {
     @Override
     protected void onInitialize() {
         super.onInitialize();
+        Seller seller1=new Seller(1,"mohan");
+        Seller seller2=new Seller(2,"venkat");
+        add(new SellerDetailsPanel("sellerinfo1",new Model<>(seller1)));
+        add(new SellerDetailsPanel("sellerinfo2",new Model<>(seller2)));
 
-        add(new SellerDetailsPanel("sellerinfo"));
+        PageParameters seller1Parameters=new PageParameters();
+        seller1Parameters.add("sellerid",seller1.getId());
+        add(new BookmarkablePageLink("sellerlink1",SellerPage.class, seller1Parameters));
+        PageParameters seller2Parameters=new PageParameters();
+        seller2Parameters.add("sellerid",seller2.getId());
+        add(new BookmarkablePageLink("sellerlink2",SellerPage.class,seller2Parameters));
+
         add(new ProductDetailsPanel("prouctinfo"));
-        add(new BookmarkablePageLink("sellerlink",SellerPage.class));
         add(new BookmarkablePageLink("productlink",ProductDetailsPage.class));
 
     }
