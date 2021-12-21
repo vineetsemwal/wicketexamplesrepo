@@ -1,0 +1,60 @@
+
+ Customer{
+
+  id: long
+  
+
+  name: String
+ 
+  purchasedItem: Item
+  
+
+}
+
+
+Item{
+
+
+ id: int
+
+  itemName: String
+
+  price: double
+
+
+}
+
+
+Components to create
+
+1) CustomerDetails
+
+
+2) ItemDetails
+
+
+Pages
+
+CustomerProfilePage,  ItemDetailsPage  ,
+
+
+ HomePage (customer details + itemdetails) 
+                                        
+ 1) 
+
+Customer 1 details
+
+item 1 -details
+
+  link for item1 page
+
+
+2) 
+Customer 2 details
+
+item 2 details
+
+link for item2 page 
+                                        
+
+
