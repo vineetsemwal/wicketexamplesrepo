@@ -23,30 +23,9 @@ public class HomePage extends WebPage {
     }
 
 
-
     @Override
     protected void onInitialize() {
         super.onInitialize();
-
-        Product product=new Product();
-        product.setId(1);
-        product.setName("samsung");
-        product.setPrice(10000);
-
-       /*
-        Label priceLabel=new Label("price",new PropertyModel<>(product,"price"));
-        add(priceLabel);
-
-        Label nameLabel=new Label("name",new PropertyModel<>(product,"name"));
-        add(nameLabel);
-
-        */
-        IModel<Double>priceModel= LambdaModel.of(product::getPrice,product::setPrice);
-        Label priceLabel=new Label("price",priceModel);
-        add(priceLabel);
-        IModel<String>nameModel=LambdaModel.of(product::getName,product::setName);
-        Label nameLabel=new Label("name",nameModel);
-        add(nameLabel);
 
     }
 

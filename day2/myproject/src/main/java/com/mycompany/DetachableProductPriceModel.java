@@ -2,7 +2,6 @@ package com.mycompany;
 
 import org.apache.wicket.model.LoadableDetachableModel;
 
-import java.nio.FloatBuffer;
 
 public class DetachableProductPriceModel extends LoadableDetachableModel<Double> {
 
