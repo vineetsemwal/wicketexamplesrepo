@@ -28,8 +28,8 @@ public class WicketApplication extends WebApplication
 	public void init()
 	{
 		super.init();
-
-
+       mountPage("seller",SellerPage.class);
+      mountPage("product",ProductDetailsPage.class);
 
 	}
 

@@ -27,7 +27,10 @@ public class HomePage extends WebPage {
     protected void onInitialize() {
         super.onInitialize();
 
+        add(new SellerDetailsPanel("sellerinfo"));
         add(new ProductDetailsPanel("prouctinfo"));
+        add(new BookmarkablePageLink("sellerlink",SellerPage.class));
+        add(new BookmarkablePageLink("productlink",ProductDetailsPage.class));
 
     }
 

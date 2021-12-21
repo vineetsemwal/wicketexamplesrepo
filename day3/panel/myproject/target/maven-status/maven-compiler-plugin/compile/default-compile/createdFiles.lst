@@ -1,5 +1,9 @@
 com/mycompany/WicketApplication.class
+com/mycompany/SellerDetailsPanel.class
 com/mycompany/ProductStore.class
+com/mycompany/SellerPage.class
 com/mycompany/Product.class
+com/mycompany/Seller.class
+com/mycompany/ProductDetailsPage.class
 com/mycompany/ProductDetailsPanel.class
 com/mycompany/HomePage.class
