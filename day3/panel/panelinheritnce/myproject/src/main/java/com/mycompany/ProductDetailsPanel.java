@@ -7,9 +7,13 @@ import org.apache.wicket.model.LambdaModel;
 
 public class ProductDetailsPanel extends Panel {
 
+
+
     public ProductDetailsPanel(String id,IModel<Product> model){
         super(id,model);
     }
+
+
 
     public IModel<Product>getModel(){
         return (IModel<Product>)getDefaultModel();

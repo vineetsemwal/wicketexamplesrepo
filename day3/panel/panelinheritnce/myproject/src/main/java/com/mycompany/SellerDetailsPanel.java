@@ -1,5 +1,6 @@
 package com.mycompany;
 
+import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
@@ -24,10 +25,13 @@ public class SellerDetailsPanel extends ProductDetailsPanel {
     @Override
     protected void onInitialize() {
         super.onInitialize();
+
         add(new Label("sellername",()->getSeller().getName()));
         add(new Label("sellerid",()->getSeller().getId()));
 
     }
+
+
 
     @Override
     protected void onDetach() {
