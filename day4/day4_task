@@ -1,0 +1,39 @@
+
+Customer{
+
+  id: long
+  
+
+  name: String
+ 
+  purchasedItem: Item
+  
+
+}
+
+
+Item{
+
+
+ id: int
+
+  itemName: String
+
+  price: double
+
+
+}
+
+
+Components to create
+
+1) create ItemDetails extends WebmarupContainer
+
+2) create CustomerDetails separate class ( extend WebMarkupContainer) 
+  
+   Render customer details + item details
+
+
+Home Page
+ 
+Add CustomerDetails Component only 
