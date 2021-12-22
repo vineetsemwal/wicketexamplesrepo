@@ -1,0 +1,3 @@
+
+Here in this project we enable resource polling , quite handy feature in development ,
+ resource polling can be enabled with a particular duration in case we want change in resource to be picked up
