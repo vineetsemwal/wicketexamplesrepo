@@ -2,3 +2,4 @@
   HomePage: dataview with custom dataprovider with paging example
   GridViewPage: gridview with custom data provider with paging example
    DataviewPanelChildPage: dataview with custom dataprovider with paging example where productspanel are repeated
+   RepeatingViewPage: Basic Repeatingview on which we are adding new items while iterating on products
