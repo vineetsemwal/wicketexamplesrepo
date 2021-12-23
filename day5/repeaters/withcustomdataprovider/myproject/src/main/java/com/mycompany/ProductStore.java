@@ -21,9 +21,7 @@ public class ProductStore {
     }
 
     public Product getById(int id){
-        System.out.println("inside getbyid "+id);
         Product product= map.get(id);
-        System.out.println("product fetched "+product);
         return product;
     }
 
@@ -45,7 +43,6 @@ public class ProductStore {
         List<Product>list=allProducts();
         int toIndex = (int)first +(int) blockSize;
         List <Product>result= list.subList((int)first, toIndex);
-        System.out.println(result);
         return result;
     }
 
