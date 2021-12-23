@@ -49,7 +49,8 @@ public class HomePage extends WebPage {
             }
         };
         add(dataView);
-        add(new PagingNavigator("navigator",dataView));
+        PagingNavigator navigator=new PagingNavigator("navigator",dataView);
+        add(navigator);
     }
 
 
