@@ -1,0 +1,6 @@
+
+  This example proves it is safer to work in onInitialize() hook than constructor because constructor gets executed too early
+
+         currently we are going to get WicketRunTimeException with msg Page not found
+         Reason is the panel constructor got executed before panel is added to the page
+        move this to onInitialize and problem will go away
