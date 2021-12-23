@@ -29,6 +29,7 @@ public class WicketApplication extends WebApplication
 	{
 		super.init();
         mountPage("gridview",GridViewPage.class);
+        mountPage("panelsrepeat",DataviewPanelChildPage.class);
 	}
 
 	@Override

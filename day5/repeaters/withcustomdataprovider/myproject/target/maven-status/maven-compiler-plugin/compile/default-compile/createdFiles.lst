@@ -1,8 +1,11 @@
 com/mycompany/WicketApplication.class
-com/mycompany/GridViewPage$1.class
 com/mycompany/ProductStore.class
+com/mycompany/DataviewPanelChildPage$1.class
 com/mycompany/Product.class
 com/mycompany/GridViewPage.class
+com/mycompany/DataviewPanelChildPage.class
+com/mycompany/ProductPanel.class
+com/mycompany/GridViewPage$1.class
 com/mycompany/ProductsDataProvider.class
 com/mycompany/DetachableProductModel.class
 com/mycompany/HomePage.class
