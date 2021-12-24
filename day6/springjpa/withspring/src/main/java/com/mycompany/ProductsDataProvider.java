@@ -15,9 +15,6 @@ public class ProductsDataProvider implements IDataProvider<Product> {
     @Autowired
     private IProductService service;
 
-    public ProductsDataProvider(){
-    }
-
     @Override
     public Iterator<? extends Product> iterator(long first, long count) {
         List<Product> list=service.findAll(first, count);

@@ -1,0 +1,7 @@
+
+
+ In this experiment we have seen component visibility we should handline in onconfigure hook , we shouldn't do in onbeforerender because if component is invisible its onbeforerender will not be executed
+
+ if Parent is invisible, it children are also invisible (ie. their onebfore renderhook can't change visibility too)
+  
+That is why in wicket component Visiblity change we should do in onconfigure and not in onbeforerender 
