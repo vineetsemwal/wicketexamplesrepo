@@ -10,13 +10,12 @@ import org.springframework.stereotype.Component;
 import java.util.Iterator;
 import java.util.List;
 
-
+@Component("productsdp")
 public class ProductsDataProvider implements IDataProvider<Product> {
-    @SpringBean
+    @Autowired
     private IProductService service;
 
     public ProductsDataProvider(){
-        Injector.get().inject(this);
     }
 
     @Override

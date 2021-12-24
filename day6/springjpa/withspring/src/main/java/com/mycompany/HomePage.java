@@ -13,6 +13,7 @@ import org.apache.wicket.markup.repeater.data.IDataProvider;
 import org.apache.wicket.markup.repeater.data.ListDataProvider;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.spring.injection.annot.SpringBean;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +23,8 @@ public class HomePage extends WebPage {
     @SpringBean
     private IProductService productService;
 
+    @SpringBean(name="productsdp")
+    private IDataProvider<Product>dataProvider;
 
     public void addProducts() {
         Product product1 = new Product("samsung", 1000);
@@ -38,8 +41,6 @@ public class HomePage extends WebPage {
     protected void onInitialize() {
         super.onInitialize();
         addProducts();
-
-        IDataProvider<Product> dataProvider = new ProductsDataProvider();
         DataView<Product> dataView = new DataView<Product>("products", dataProvider, 2) {
             @Override
             protected void populateItem(Item<Product> item) {
