@@ -14,7 +14,7 @@ public class EvenValidator implements IValidator<Integer> {
     public void validate(IValidatable<Integer> validatable) {
       Integer value=validatable.getValue();
       ValidationError error=new ValidationError(this);
-      error.setVariable("evenfail","value is not even");
+      error.setVariable("evenfail","evenfail");
       error.setMessage("value is not even");
       if( value==null || value%2!=0){
           validatable.error(error);

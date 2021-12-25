@@ -1,0 +1,51 @@
+
+
+
+
+Item{
+
+
+ id: int
+
+  itemName: String
+
+  price: double
+
+
+}
+
+
+Components to create
+
+ 
+
+1) ItemDetails
+
+
+ 2) AddItemPanel
+        
+        form to add item  
+           fields(id , name, price )
+
+        Item Details 
+
+
+Page to create
+
+1) HomePage
+ bookmarkable link to ListItemsPage
+ 
+
+2) ListItemsPage
+
+    AddItemsPanel
+     
+
+    Items Repeater (optional)    
+
+
+
+ validations Required
+ id is required and should be greater than 0 
+ itemName is required and should be of length range 2 to 10
+ price is required and should be not negative 
