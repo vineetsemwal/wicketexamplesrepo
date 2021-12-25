@@ -87,6 +87,7 @@ public class HomePage extends WebPage {
              priceField.setRequired(true);
              priceField.setType(Double.class);
              priceField.add(RangeValidator.range(100.0,200.0));
+            // priceField.setLabel(Model.of("pricefield"));
 
              TextField<Integer>idField=new TextField<>("id",new Model<Integer>(){
                  @Override
@@ -114,7 +115,13 @@ public class HomePage extends WebPage {
             Product product=getModelObject();
             System.out.println("inside onsubmit id"+product.getId()+"-name-"+product.getName()+"-"+product.getPrice());
             productAdded=true;
+            success("Thankyou, product successfully added");
         }
+
+        @Override
+        protected void onValidate() {
+        }
+
 
         @Override
         protected void onError() {

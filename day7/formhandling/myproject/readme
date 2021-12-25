@@ -1,0 +1,14 @@
+
+
+  FormHandling flow
+
+ 1) Form Validation: firt step that wicket does is validation of form (its FormComponents) if there are validation failure , form can't be submitted, onError() on Form will be executed
+ 2)Updating Models: if there are not validations failure , form components models will be updated, type conversion will also take place for value to desired, for this conversion to take place properly we will add the desired DataType of FormCoponent  
+ 3) onSubmit() will be executed, here we can add product in store and redirect to product details page etc, currently we are displaying product details in same page
+
+
+Simple Form handling demo where we are enduser is adding product
+
+uses Predefined Validators like RangeValidator for product id and product price field
+
+uses StringValidators for string validation on product name 
