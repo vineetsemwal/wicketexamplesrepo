@@ -4,4 +4,5 @@ com/mycompany/ProductStore.class
 com/mycompany/Product.class
 com/mycompany/HomePage$ProductForm.class
 com/mycompany/HomePage$ProductForm$1.class
+com/mycompany/ExactErrorLevelFilter.class
 com/mycompany/HomePage.class

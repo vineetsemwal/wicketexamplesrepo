@@ -2,6 +2,9 @@ package com.mycompany;
 
 import org.apache.wicket.Page;
 import org.apache.wicket.RestartResponseException;
+import org.apache.wicket.feedback.ErrorLevelFeedbackMessageFilter;
+import org.apache.wicket.feedback.ExactLevelFeedbackMessageFilter;
+import org.apache.wicket.feedback.FeedbackMessage;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
@@ -38,8 +41,8 @@ public class HomePage extends WebPage {
         super.onInitialize();
         IModel<Product>model= new Model<>(product);
         add(new ProductForm("productForm",model));
-        add(new FeedbackPanel("feedback"));
-
+        add(new FeedbackPanel("feedbackFail",new ExactLevelFeedbackMessageFilter(FeedbackMessage.ERROR)));
+        add(new FeedbackPanel("feedbackWin", new ExactErrorLevelFilter(FeedbackMessage.SUCCESS)));
         add(new ProductDetailsContainer("productDetails",model));
 
     }
