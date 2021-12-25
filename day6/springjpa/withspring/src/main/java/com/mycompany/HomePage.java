@@ -23,8 +23,7 @@ public class HomePage extends WebPage {
     @SpringBean
     private IProductService productService;
 
-    @SpringBean(name="productsdp")
-    private IDataProvider<Product>dataProvider;
+
 
     public void addProducts() {
         Product product1 = new Product("samsung", 1000);
@@ -40,6 +39,7 @@ public class HomePage extends WebPage {
     @Override
     protected void onInitialize() {
         super.onInitialize();
+        IDataProvider<Product>dataProvider=new ProductsDataProvider();
         addProducts();
         DataView<Product> dataView = new DataView<Product>("products", dataProvider, 2) {
             @Override
