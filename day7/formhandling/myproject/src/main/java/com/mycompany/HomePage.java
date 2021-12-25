@@ -35,14 +35,15 @@ public class HomePage extends WebPage {
      private Product product=new Product();
 
     private boolean productAdded;
+    private FeedbackPanel failureFeedbackPanel,successFeedbackPanel;
 
     @Override
     protected void onInitialize() {
         super.onInitialize();
         IModel<Product>model= new Model<>(product);
         add(new ProductForm("productForm",model));
-        add(new FeedbackPanel("feedbackFail",new ExactLevelFeedbackMessageFilter(FeedbackMessage.ERROR)));
-        add(new FeedbackPanel("feedbackWin", new ExactErrorLevelFilter(FeedbackMessage.SUCCESS)));
+        add(failureFeedbackPanel=new FeedbackPanel("feedbackFail",new ExactLevelFeedbackMessageFilter(FeedbackMessage.ERROR)));
+        add(successFeedbackPanel=new FeedbackPanel("feedbackWin", new ExactErrorLevelFilter(FeedbackMessage.SUCCESS)));
         add(new ProductDetailsContainer("productDetails",model));
 
     }
