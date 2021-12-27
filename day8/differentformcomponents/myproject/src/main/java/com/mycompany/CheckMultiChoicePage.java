@@ -4,11 +4,19 @@ import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.CheckBox;
+import org.apache.wicket.markup.html.form.CheckBoxMultipleChoice;
 import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LambdaModel;
+import org.apache.wicket.model.util.ListModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 
 
 public class CheckMultiChoicePage extends WebPage {
@@ -29,7 +37,9 @@ public class CheckMultiChoicePage extends WebPage {
         CustomForm form=new CustomForm("form");
         add(form);
         Label javaField=new Label("java",()->{
-           boolean chosen=form.getJavaCheck().getModelObject();
+         Collection<Language>chosens= form.getMultiChoice().getModelObject();
+
+           boolean chosen=chosens.contains(new Language("java"));
            if(chosen){
              return "java is chosen";
 
@@ -39,7 +49,8 @@ public class CheckMultiChoicePage extends WebPage {
         add(javaField);
 
         Label pythonField=new Label("python",()->{
-           boolean chosen=form.getPythonCheck().getModelObject();
+            Collection<Language>chosens= form.getMultiChoice().getModelObject();
+            boolean chosen=chosens.contains(new Language("python"));
            if(chosen){
                return "python is chosen";
            }
@@ -48,7 +59,8 @@ public class CheckMultiChoicePage extends WebPage {
         add(pythonField);
 
         Label kotlinField=new Label("kotlin",()->{
-            boolean chosen=form.getKotlinCheck().getModelObject();
+            Collection<Language>chosens= form.getMultiChoice().getModelObject();
+            boolean chosen=chosens.contains(new Language("kotlin"));
             if(chosen){
                 return "kotlin is chosen";
             }
@@ -85,20 +97,11 @@ public class CheckMultiChoicePage extends WebPage {
      public void setKotlin(boolean kotlin) {
          this.kotlin = kotlin;
      }
-     private CheckBox javaCheck;
-     private CheckBox pythonCheck;
-    private CheckBox kotlinCheck;
 
-     public CheckBox getJavaCheck() {
-         return javaCheck;
-     }
+     private CheckBoxMultipleChoice<Language>multiChoice;
 
-     public CheckBox getPythonCheck() {
-         return pythonCheck;
-     }
-
-     public CheckBox getKotlinCheck() {
-         return kotlinCheck;
+     public CheckBoxMultipleChoice<Language> getMultiChoice() {
+         return multiChoice;
      }
 
      public CustomForm(String id){
@@ -108,14 +111,22 @@ public class CheckMultiChoicePage extends WebPage {
      @Override
      protected void onInitialize() {
          super.onInitialize();
-         javaCheck=new CheckBox("java", LambdaModel.of(this::isJava,this::setJava));
-         add(javaCheck);
-         pythonCheck=new CheckBox("python",LambdaModel.of(this::isPython,this::setPython));
-         add(pythonCheck);
-         kotlinCheck=new CheckBox("kotlin",LambdaModel.of(this::isKotlin,this::setKotlin));
-         add(kotlinCheck);
+
+         List<Language> choices= Arrays.asList(
+                 new Language("java"),
+                 new Language("python"),
+                 new Language("kotlin")
+                 );
+
+         IModel<List<Language>>listModel=new ListModel<>(new ArrayList<>());
+         multiChoice=new CheckBoxMultipleChoice<>("multi",listModel,choices,new LanguageChoiceRenderer());
+         add(multiChoice);
+         multiChoice.setSuffix("<br>");
          add(new Button("submit"));
      }
+
+
+
  }
 
 
