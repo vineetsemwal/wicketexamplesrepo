@@ -31,6 +31,7 @@ public class WicketApplication extends WebApplication
 	{
 		super.init();
    mountPage("multichoice",CheckMultiChoicePage.class);
+   mountPage("radios",RadioMultiChoicePage.class);
 
 	}
 
