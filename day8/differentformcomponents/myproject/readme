@@ -1,2 +1,7 @@
 
 Different Form components demo
+1)Home page contains different checkboxes
+
+2) CheckMultiChoicePage contains CheckBoxMultipleChoice which will render multiple checkboxes based on choices we have provided
+
+3) RadioMultiChoicePage contains RadioChoice which will rrender multiple radios based on choices we have provided

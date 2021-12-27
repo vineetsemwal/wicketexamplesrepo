@@ -121,7 +121,7 @@ public class RadioMultiChoicePage extends WebPage {
      protected void onInitialize() {
          super.onInitialize();
 
-         //model for choices for which different checkboxes will be managed internally by CheckBoxMultipleChoice
+         //model for choices for which different radios will be managed internally by CheckBoxMultipleChoice
          IModel<List<Language>> choices=()->{ return Arrays.asList(
                  new Language("java"),
                  new Language("python"),
