@@ -22,6 +22,15 @@ public class HomePage extends WebPage {
 
     private Product product=new Product();
 
+    private Category category;
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 
     public Product getProduct() {
         return product;
@@ -100,7 +109,7 @@ public class HomePage extends WebPage {
             add(productField);
             productField.setRequired(true);
             productField.setType(Product.class);
-            IModel<Category>categoryModel=LambdaModel.of(HomePage.this.product::getCategory,HomePage.this.product::setCategory);
+            IModel<Category>categoryModel=LambdaModel.of(HomePage.this::getCategory,HomePage.this::setCategory);
             TextField<Category>categoryField=new TextField("category",categoryModel);
             categoryField.setType(Category.class);
             categoryField.setRequired(true);
@@ -110,6 +119,7 @@ public class HomePage extends WebPage {
 
         @Override
         protected void onSubmit() {
+            product.setCategory(getCategory());
             System.out.println("insde on submit, catgeory="+product.getCategory());
         }
     }
