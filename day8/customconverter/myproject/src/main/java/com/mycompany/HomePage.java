@@ -20,7 +20,8 @@ public class HomePage extends WebPage {
 
     private static final Logger log= LoggerFactory.getLogger(HomePage.class);
 
-    private Product product;
+    private Product product=new Product();
+
 
     public Product getProduct() {
         return product;
@@ -29,6 +30,7 @@ public class HomePage extends WebPage {
     public void setProduct(Product product) {
         this.product = product;
     }
+
 
     public HomePage(final PageParameters parameters) {
         super(parameters);
@@ -62,6 +64,25 @@ public class HomePage extends WebPage {
             return product.getPrice();
         }));
 
+        add(new Label("categoryName", ()->{
+            if(product==null||product.getCategory()==null){
+                return "";
+            }
+            return product.getCategory().name();
+        }));
+        add(new Label("categoryId", ()->{
+            if(product==null||product.getCategory()==null){
+                return "";
+            }
+            return product.getCategory().getCategoryId();
+        }));
+        add(new Label("categoryShort", ()->{
+            if(product==null||product.getCategory()==null){
+                return "";
+            }
+            return product.getCategory().getShortName();
+        }));
+
     }
 
 
@@ -74,12 +95,22 @@ public class HomePage extends WebPage {
         @Override
         protected void onInitialize() {
             super.onInitialize();
-            IModel<Product>model=LambdaModel.of(HomePage.this::getProduct,HomePage.this::setProduct);
-            TextField<Product>productField=new TextField<>("productinput",model);
+            IModel<Product>productModel=LambdaModel.of(HomePage.this::getProduct,HomePage.this::setProduct);
+            TextField<Product>productField=new TextField<>("productinput",productModel);
             add(productField);
             productField.setRequired(true);
             productField.setType(Product.class);
+            IModel<Category>categoryModel=LambdaModel.of(HomePage.this.product::getCategory,HomePage.this.product::setCategory);
+            TextField<Category>categoryField=new TextField("category",categoryModel);
+            categoryField.setType(Category.class);
+            categoryField.setRequired(true);
+            add(categoryField);
             add(new Button("submit"));
+        }
+
+        @Override
+        protected void onSubmit() {
+            System.out.println("insde on submit, catgeory="+product.getCategory());
         }
     }
 

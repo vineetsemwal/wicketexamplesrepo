@@ -38,6 +38,7 @@ public class WicketApplication extends WebApplication
 	protected IConverterLocator newConverterLocator() {
 		ConverterLocator locator=new ConverterLocator();
 		locator.set( Product.class, new ProductConverter());
+		locator.set(Category.class,new CategoryConverter());
 		return locator;
 	}
 
