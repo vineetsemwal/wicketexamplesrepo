@@ -1,8 +1,9 @@
 package com.mycompany;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Language {
+public class Language implements Serializable {
 
     private String languageName;
 

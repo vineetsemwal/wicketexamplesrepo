@@ -112,12 +112,14 @@ public class CheckMultiChoicePage extends WebPage {
      protected void onInitialize() {
          super.onInitialize();
 
-         List<Language> choices= Arrays.asList(
+         //model for choices for which different checkboxes will be managed internally by CheckBoxMultipleChoice
+         IModel<List<Language>> choices=()->{ return Arrays.asList(
                  new Language("java"),
                  new Language("python"),
                  new Language("kotlin")
-                 );
+                 );};
 
+         //will hold user input model objects for chosen checkbox
          IModel<List<Language>>listModel=new ListModel<>(new ArrayList<>());
          multiChoice=new CheckBoxMultipleChoice<>("multi",listModel,choices,new LanguageChoiceRenderer());
          add(multiChoice);
