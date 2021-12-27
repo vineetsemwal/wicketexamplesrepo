@@ -1,0 +1,3 @@
+
+
+In this project we saw how Panels can be extended , when we extend Panel or ChildPanel/SubClassPanel will have markup of ParentPanel + markup of new components added in subclass  

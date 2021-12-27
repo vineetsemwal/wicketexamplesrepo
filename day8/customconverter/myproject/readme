@@ -1,0 +1,4 @@
+
+Example showing use of customconverter
+
+Wicket has by default set many converters for various data types but if we have custom data type liek in this example Product, we can can create and add the converter in the application 

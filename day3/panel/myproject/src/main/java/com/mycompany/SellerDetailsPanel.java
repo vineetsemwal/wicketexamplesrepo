@@ -10,7 +10,8 @@ public class SellerDetailsPanel extends Panel {
 
     private int counter; // incrementing
 
-    public SellerDetailsPanel(String id, IModel model){
+
+    public SellerDetailsPanel(String id, IModel<Seller> model){
         super(id, model);
     }
 
@@ -25,6 +26,7 @@ public class SellerDetailsPanel extends Panel {
     @Override
     protected void onInitialize() {
         super.onInitialize();
+
         add(new Label("name",()->getSeller().getName()));
         add(new Label("sellerid",()->getSeller().getId()));
 

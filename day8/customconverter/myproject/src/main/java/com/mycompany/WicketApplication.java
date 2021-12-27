@@ -1,10 +1,10 @@
 package com.mycompany;
 
+import org.apache.wicket.ConverterLocator;
+import org.apache.wicket.IConverterLocator;
 import org.apache.wicket.RuntimeConfigurationType;
-import org.apache.wicket.core.util.file.WebApplicationPath;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.protocol.http.WebApplication;
-import org.apache.wicket.util.time.Duration;
 
 /**
  * Application object for your web application.
@@ -30,9 +30,15 @@ public class WicketApplication extends WebApplication
 	public void init()
 	{
 		super.init();
-		mountPage
-		getResourceSettings().getResourceFinders().add(new WebApplicationPath(getServletContext() ,"markup"));
-        getResourceSettings().setResourcePollFrequency(Duration.seconds(10)) ;
+
+
+	}
+
+	@Override
+	protected IConverterLocator newConverterLocator() {
+		ConverterLocator locator=new ConverterLocator();
+		locator.set( Product.class, new ProductConverter());
+		return locator;
 	}
 
 	@Override

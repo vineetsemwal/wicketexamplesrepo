@@ -3,7 +3,10 @@ package com.mycompany;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.navigation.paging.PagingNavigator;
+import org.apache.wicket.markup.repeater.DefaultItemReuseStrategy;
+import org.apache.wicket.markup.repeater.IItemReuseStrategy;
 import org.apache.wicket.markup.repeater.Item;
+import org.apache.wicket.markup.repeater.ReuseIfModelsEqualStrategy;
 import org.apache.wicket.markup.repeater.data.DataView;
 import org.apache.wicket.markup.repeater.data.IDataProvider;
 import org.apache.wicket.model.Model;
@@ -30,6 +33,8 @@ public class DataviewPanelChildPage extends WebPage {
               item.add(new ProductPanel("product",item.getModel()));
             }
         };
+        IItemReuseStrategy reuseStrategy= ReuseIfModelsEqualStrategy.getInstance();
+        dataView.setItemReuseStrategy(reuseStrategy);
         add(dataView);
         PagingNavigator navigator=new PagingNavigator("navigator",dataView);
         add(navigator);

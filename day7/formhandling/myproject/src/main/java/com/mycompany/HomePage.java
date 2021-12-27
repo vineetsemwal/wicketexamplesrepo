@@ -8,6 +8,7 @@ import org.apache.wicket.feedback.FeedbackMessage;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.Link;
@@ -74,6 +75,8 @@ public class HomePage extends WebPage {
 
 
     class ProductForm extends Form<Product> {
+
+        private TextField<Double>priceField;
         public ProductForm(String id, IModel<Product>model){
             super(id,model);
         }
@@ -85,8 +88,7 @@ public class HomePage extends WebPage {
              nameField.setRequired(true);
              nameField.add(StringValidator.exactLength(5));
              add(nameField);
-
-             TextField<Double>priceField=new TextField<>("price",LambdaModel.of(getModelObject()::getPrice,getModelObject()::setPrice));
+             priceField=new TextField<>("price",LambdaModel.of(getModelObject()::getPrice,getModelObject()::setPrice));
              add(priceField);
              priceField.setRequired(true);
              priceField.setType(Double.class);
@@ -124,6 +126,13 @@ public class HomePage extends WebPage {
 
         @Override
         protected void onValidate() {
+          Double price= priceField.getConvertedInput();
+           if(price<0){
+               error("price too low");
+           }else{
+               success("correct price entered");
+           }
+
         }
 
 

@@ -1,0 +1,4 @@
+
+In this projct we noticed if we have to extend feature , we don't have to go inheritance way ie. We can reuse the old panel in the new panel by just adding the oldpanel as child with add(Component cmp) 
+
+This is the more used approach in wicket than inheritance
