@@ -1,0 +1,33 @@
+
+
+
+Item{
+
+
+ id: int
+
+  itemName: String
+
+  price: double
+
+
+}
+
+
+Components to create
+
+ 
+
+1) ItemDetails
+
+2) RadioItemsPanel
+
+
+Page to create
+
+1) HomePage
+        
+      
+      RadioItemsPanel
+
+       ItemDetails
