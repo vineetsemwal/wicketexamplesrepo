@@ -1,4 +1,6 @@
 com/mycompany/LanguageChoiceRenderer.class
+com/mycompany/RadioMultiChoicePage$CustomForm.class
+com/mycompany/RadioMultiChoicePage.class
 com/mycompany/CheckMultiChoicePage$CustomForm.class
 com/mycompany/CheckMultiChoicePage.class
 com/mycompany/Language.class
