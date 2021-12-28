@@ -18,7 +18,7 @@ import java.util.List;
 public class HomePage extends WebPage {
     private static final long serialVersionUID = 1L;
 
-    private static final Logger log= LoggerFactory.getLogger(HomePage.class);
+    private static final Logger log = LoggerFactory.getLogger(HomePage.class);
 
 
     public HomePage(final PageParameters parameters) {
@@ -26,70 +26,70 @@ public class HomePage extends WebPage {
     }
 
 
-
     @Override
     protected void onInitialize() {
         super.onInitialize();
-        CustomForm form=new CustomForm("form");
+        CustomForm form = new CustomForm("form");
         add(form);
-        Label chosenDetails=new Label("chosen",()->{
-         Language language= form.getDropdown().getModelObject();
+        Label chosenDetails = new Label("chosen", () -> {
+            Language language = form.getDropdown().getModelObject();
 
-           if(language!=null){
-             return language.getLanguageName();
-           }
-           return "Nothing chosen";
+            if (language != null) {
+                return language.getLanguageName();
+            }
+            return "Nothing chosen";
         });
         add(chosenDetails);
 
 
     }
 
- class CustomForm extends Form<Void> {
+    class CustomForm extends Form<Void> {
 
 
         private Language chosen;
 
-     public Language getChosen() {
-         return chosen;
-     }
+        public Language getChosen() {
+            return chosen;
+        }
 
-     public void setChosen(Language chosen) {
-         this.chosen = chosen;
-     }
+        public void setChosen(Language chosen) {
+            this.chosen = chosen;
+        }
 
 
-     private DropDownChoice<Language> dropdown;
+        private DropDownChoice<Language> dropdown;
 
-     public DropDownChoice<Language> getDropdown() {
-         return dropdown;
-     }
+        public DropDownChoice<Language> getDropdown() {
+            return dropdown;
+        }
 
-     public CustomForm(String id){
+        public CustomForm(String id) {
             super(id);
         }
 
-     @Override
-     protected void onInitialize() {
-         super.onInitialize();
+        @Override
+        protected void onInitialize() {
+            super.onInitialize();
 
-         //model for choices for which different radios will be managed internally by CheckBoxMultipleChoice
-         IModel<List<Language>> choices=()->{ return Arrays.asList(
-                 new Language("java"),
-                 new Language("python"),
-                 new Language("kotlin")
-                 );};
+            //model for choices for which different radios will be managed internally by CheckBoxMultipleChoice
+            IModel<List<Language>> choices = () -> {
+                return Arrays.asList(
+                        new Language("java"),
+                        new Language("python"),
+                        new Language("kotlin")
+                );
+            };
 
-         //will hold user input model objects for chosen checkbox
-         IModel<Language>radioModel= LambdaModel.of(this::getChosen,this::setChosen);
-         dropdown =new DropDownChoice<>("dropdown",radioModel,choices,new LanguageChoiceRenderer());
-         add(dropdown);
-         add(new Button("submit"));
-     }
+            //will hold user input model objects for chosen checkbox
+            IModel<Language> radioModel = LambdaModel.of(this::getChosen, this::setChosen);
+            dropdown = new DropDownChoice<>("dropdown", radioModel, choices, new LanguageChoiceRenderer());
+            add(dropdown);
+            add(new Button("submit"));
+        }
 
 
-
- }
+    }
 
 
 }
