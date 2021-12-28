@@ -72,31 +72,7 @@ public class CheckMultiChoicePage extends WebPage {
     }
 
  class CustomForm extends Form<Void> {
-        private boolean java, python,kotlin;
 
-     public boolean isJava() {
-         return java;
-     }
-
-     public void setJava(boolean java) {
-         this.java = java;
-     }
-
-     public boolean isPython() {
-         return python;
-     }
-
-     public void setPython(boolean python) {
-         this.python = python;
-     }
-
-     public boolean isKotlin() {
-         return kotlin;
-     }
-
-     public void setKotlin(boolean kotlin) {
-         this.kotlin = kotlin;
-     }
 
      private CheckBoxMultipleChoice<Language>multiChoice;
 

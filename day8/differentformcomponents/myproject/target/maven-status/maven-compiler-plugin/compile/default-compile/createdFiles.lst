@@ -1,6 +1,9 @@
+com/mycompany/WicketApplication.class
 com/mycompany/LanguageChoiceRenderer.class
 com/mycompany/RadioMultiChoicePage$CustomForm.class
+com/mycompany/HomePage$CustomForm.class
 com/mycompany/RadioMultiChoicePage.class
 com/mycompany/CheckMultiChoicePage$CustomForm.class
 com/mycompany/CheckMultiChoicePage.class
+com/mycompany/HomePage.class
 com/mycompany/Language.class
