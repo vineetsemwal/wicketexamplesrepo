@@ -1,7 +1,10 @@
 package com.mycompany;
 
+import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.form.AjaxButton;
+import org.apache.wicket.behavior.Behavior;
+import org.apache.wicket.extensions.ajax.markup.html.IndicatingAjaxButton;
 import org.apache.wicket.feedback.ExactLevelFeedbackMessageFilter;
 import org.apache.wicket.feedback.FeedbackMessage;
 import org.apache.wicket.markup.html.WebPage;
@@ -31,8 +34,6 @@ public class SimplePage extends WebPage {
         this.evenValue=evenValue;
     }
 
-
-
     @Override
     protected void onInitialize() {
         super.onInitialize();
@@ -42,12 +43,19 @@ public class SimplePage extends WebPage {
         form.add(evenField);
         evenField.add(EvenValidator.getInstance());
         evenField.setType(Integer.class);
-        form.add(new AjaxButton("button") {
+        form.add(new IndicatingAjaxButton("button") {
             @Override
             protected void onSubmit(AjaxRequestTarget target) {
                 System.out.println("inside onsubmit evenValue="+evenValue);
                 target.add(feedback);
                 target.add(label);
+                /*
+                try {
+                    Thread.sleep(1000);
+                }catch (InterruptedException e){
+                   e.printStackTrace();
+                }
+                */
             }
 
             @Override
@@ -59,11 +67,12 @@ public class SimplePage extends WebPage {
             }
         });
         add(form);
-        add(label=new Label("even",()->evenValue){
+        add(label=new Label("even",()->evenValue));
+        label.add(new Behavior() {
             @Override
-            protected void onConfigure() {
-                super.onConfigure();
-                setVisible(getEvenValue()%2==0);
+            public void onConfigure(Component component) {
+                super.onConfigure(component);
+                component.setVisible(evenValue%2==0);
             }
         });
         label.setOutputMarkupPlaceholderTag(true);
