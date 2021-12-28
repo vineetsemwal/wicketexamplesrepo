@@ -63,7 +63,7 @@ public class SimplePage extends WebPage {
                 System.out.println("inside onerror evenValue="+evenValue);
                 target.add(feedback);
                 target.add(label);
-                evenValue=-1;
+
             }
         });
         add(form);
