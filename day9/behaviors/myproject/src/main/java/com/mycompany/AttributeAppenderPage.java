@@ -1,30 +1,23 @@
 package com.mycompany;
 
 import org.apache.wicket.AttributeModifier;
-import org.apache.wicket.markup.ComponentTag;
+import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.form.Button;
-import org.apache.wicket.markup.html.form.DropDownChoice;
-import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.model.IModel;
-import org.apache.wicket.model.LambdaModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Arrays;
-import java.util.List;
 
-
-public class HomePage extends WebPage {
+public class AttributeAppenderPage extends WebPage {
     private static final long serialVersionUID = 1L;
 
-    private static final Logger log = LoggerFactory.getLogger(HomePage.class);
+    private static final Logger log = LoggerFactory.getLogger(AttributeAppenderPage.class);
 
     private int counter;
 
-    public HomePage(final PageParameters parameters) {
+    public AttributeAppenderPage(final PageParameters parameters) {
         super(parameters);
         setStatelessHint(false);
     }
@@ -46,10 +39,11 @@ public class HomePage extends WebPage {
             }
             return "odd";
         };
-        //attributemodifier doesn't always need model as the value of tag property,
+        //attributeappender doesn't always need model as the value of tag property,
         // use model if you want to be dynamic ie. on every render if you want different style/css add to the tag
-        AttributeModifier modifier=new AttributeModifier("class",model);
-        counterLabel.add(modifier);
+        AttributeAppender appender=new AttributeAppender("class",model);
+        appender.setSeparator(" ");
+        counterLabel.add(appender);
         add(counterLabel);
 
     }

@@ -3,6 +3,7 @@ package com.mycompany;
 import org.apache.wicket.RuntimeConfigurationType;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.protocol.http.WebApplication;
+import org.w3c.dom.Attr;
 
 /**
  * Application object for your web application.
@@ -28,6 +29,7 @@ public class WicketApplication extends WebApplication
 	public void init()
 	{
 		super.init();
+		mountPage("appender", AttributeAppenderPage.class);
 
 	}
 
