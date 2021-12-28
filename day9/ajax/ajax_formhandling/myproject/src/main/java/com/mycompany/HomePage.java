@@ -2,6 +2,8 @@ package com.mycompany;
 
 import org.apache.wicket.Page;
 import org.apache.wicket.RestartResponseException;
+import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.markup.html.form.AjaxButton;
 import org.apache.wicket.feedback.ErrorLevelFeedbackMessageFilter;
 import org.apache.wicket.feedback.ExactLevelFeedbackMessageFilter;
 import org.apache.wicket.feedback.FeedbackMessage;
@@ -38,6 +40,9 @@ public class HomePage extends WebPage {
     private boolean productAdded;
     private FeedbackPanel failureFeedbackPanel,successFeedbackPanel;
 
+    private ProductDetailsContainer productDetailsContainer;
+
+
     @Override
     protected void onInitialize() {
         super.onInitialize();
@@ -45,18 +50,22 @@ public class HomePage extends WebPage {
         add(new ProductForm("productForm",model));
         add(failureFeedbackPanel=new FeedbackPanel("feedbackFail",new ExactLevelFeedbackMessageFilter(FeedbackMessage.ERROR)));
         add(successFeedbackPanel=new FeedbackPanel("feedbackWin", new ExactErrorLevelFilter(FeedbackMessage.SUCCESS)));
-        add(new ProductDetailsContainer("productDetails",model));
+       failureFeedbackPanel.setOutputMarkupPlaceholderTag(true);
+       successFeedbackPanel.setOutputMarkupPlaceholderTag(true);
+        add( productDetailsContainer=new ProductDetailsContainer("productDetails",model));
 
     }
 
     class ProductDetailsContainer extends WebMarkupContainer{
         public ProductDetailsContainer(String id,IModel<Product>model){
             super(id,model);
+            setOutputMarkupPlaceholderTag(true);
         }
 
         public  IModel<Product>getModel(){
             return (IModel<Product>)getDefaultModel();
         }
+
 
         @Override
         protected void onConfigure() {
@@ -111,37 +120,36 @@ public class HomePage extends WebPage {
              idField.setType(Integer.class);
             idField.add(RangeValidator.minimum(1));
             idField.setRequired(true);
-            add(new Button("btn"));
+            add(new AjaxButton("btn"){
+                @Override
+                protected void onSubmit(AjaxRequestTarget target) {
+                    Product product=ProductForm.this.getModelObject();
+                    System.out.println("inside onsubmit id"+product.getId()+"-name-"+product.getName()+"-"+product.getPrice());
+                    productAdded=true;
+                    success("Thankyou, product successfully added");
+                    productAdded=true;
+                    target.add(successFeedbackPanel);
+                    target.add(failureFeedbackPanel);
+                    target.add(productDetailsContainer);
+                }
+
+                @Override
+                protected void onError(AjaxRequestTarget target) {
+                    super.onError(target);
+                    Product product=ProductForm.this.getModelObject();
+                    System.out.println("inside onError id"+product.getId()+"-name-"+product.getName()+"-"+product.getPrice());
+                    productAdded=false;
+                    target.add(successFeedbackPanel);
+                    target.add(failureFeedbackPanel);
+                    target.add(productDetailsContainer);
+                }
+
+            });
 
 
         }
 
-        @Override
-        protected void onSubmit() {
-            Product product=getModelObject();
-            System.out.println("inside onsubmit id"+product.getId()+"-name-"+product.getName()+"-"+product.getPrice());
-            productAdded=true;
-            success("Thankyou, product successfully added");
-        }
 
-        @Override
-        protected void onValidate() {
-          Double price= priceField.getConvertedInput();
-           if(price<0){
-               error("price too low");
-           }else{
-               success("correct price entered");
-           }
-
-        }
-
-
-        @Override
-        protected void onError() {
-            Product product=getModelObject();
-            System.out.println("inside onError id"+product.getId()+"-name-"+product.getName()+"-"+product.getPrice());
-
-        }
     }
 
 }
