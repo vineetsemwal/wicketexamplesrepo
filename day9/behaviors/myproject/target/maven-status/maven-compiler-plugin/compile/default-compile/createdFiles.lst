@@ -1,3 +1,7 @@
 com/mycompany/WicketApplication.class
+com/mycompany/CustomAttributeModifier2.class
+com/mycompany/CustomAttributeModifierPage.class
+com/mycompany/CustomAttributeModifierPage$1.class
+com/mycompany/CustomAttributeModifier1.class
 com/mycompany/AttributeAppenderPage.class
 com/mycompany/HomePage.class

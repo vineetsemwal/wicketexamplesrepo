@@ -30,6 +30,7 @@ public class WicketApplication extends WebApplication
 	{
 		super.init();
 		mountPage("appender", AttributeAppenderPage.class);
+		mountPage("mymodifier",CustomAttributeModifierPage.class);
 
 	}
 
