@@ -1,0 +1,5 @@
+
+HomePage contains use of onComponentTag on one of the component(label) ,
+onComponentTag is one of the hook that gets executed in the rendering phase of component lifecyle
+
+Reload page again to see different css class added to the label
