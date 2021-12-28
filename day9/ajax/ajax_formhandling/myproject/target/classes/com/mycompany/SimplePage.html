@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+	<head>
+
+		<style type="text/css">
+			.feedbackFail{
+			 background-color:red;
+
+			}
+		</style>
+
+
+	</head>
+	<body>
+
+	<div>
+
+	<form wicket:id="form" novalidate>
+	 <span>Add Value</span> <input wicket:id="evenField">
+		 <br>
+		<input wicket:id="button" type="submit" value="Submit">
+	</form>
+
+	</div>
+
+	<div wicket:id="feedback"></div>
+
+	Value submitted is <span wicket:id="even"></span>
+
+	</body>
+</html>

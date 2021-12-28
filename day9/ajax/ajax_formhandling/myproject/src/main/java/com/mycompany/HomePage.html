@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+	<head>
+
+		<style type="text/css">
+
+		.feedbackError{
+		   background-color:red;
+		   color:#fff;
+		}
+
+		.feedbackSuccess{
+		 background-color:green;
+		   color:#fff;
+		}
+
+		</style>
+
+	</head>
+	<body>
+
+	<div>
+
+	<form wicket:id="productForm" novalidate>
+	   <span>Id</span> <input wicket:id="id">
+		<br>
+		<span>Name</span> <input wicket:id="name">
+		<br>
+		<span>Price</span> <input  wicket:id="price">
+		 <br>
+		<input wicket:id="btn" type="submit" value="Create Product">
+	</form>
+
+	</div>
+
+	<div wicket:id="feedbackFail" class="feedbackError"></div>
+
+	<div wicket:id="feedbackWin" class="feedbackSuccess"></div>
+
+
+	<div wicket:id="productDetails">
+    <h3>Product added in store</h3>
+
+	 Id is	<span wicket:id="id"></span>
+	<br>
+     Name is <span wicket:id="name"></span>
+    <br>
+     Price is <span wicket:id="price"></span>
+	</div>
+
+	</body>
+</html>

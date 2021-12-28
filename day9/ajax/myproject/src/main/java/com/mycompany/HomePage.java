@@ -56,7 +56,7 @@ public class HomePage extends WebPage {
         };
         add(link);
 
-        //attributemodifier doesn't always need model as the value of tag property,
+        //attributemodifier doesn't always need model as the value of tag property, string can be used as property value
         // use model if you want to be dynamic ie. on every render if you want different style/css add to the tag
         AttributeModifier modifier=new AttributeModifier("class",model);
         counterLabel.add(modifier);
