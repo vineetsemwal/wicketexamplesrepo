@@ -103,12 +103,12 @@ public class HomePage extends WebPage {
              TextField<Integer>idField=new TextField<>("id",new Model<Integer>(){
                  @Override
                  public Integer getObject() {
-                     return ProductForm.this.getModelObject().getId();
+                     return formsProduct.getId();
                  }
 
                  @Override
                  public void setObject(Integer id) {
-                     ProductForm.this.getModelObject().setId(id);
+                    formsProduct.setId(id);
                  }
              });
 
