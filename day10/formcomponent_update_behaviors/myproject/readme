@@ -1,0 +1,6 @@
+
+The example shows usage of AjaxEventBehavior
+
+ In this example we have created custom ajax link ,
+ added to our CustomAjaxLink AjaxEventBehavior which will be executed on click by enduser
+ We have also added indicating behavior (progress wheel displayed till request finish)
