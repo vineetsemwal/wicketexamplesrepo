@@ -1,0 +1,9 @@
+
+IAjaxCallListener's precondition demos
+
+1)HomePage contains one demo where user is given confirmation popup , if he clcik on yes, request is sent to server
+else result in precondition failure and request is not sent to server
+
+2)SecondPreconditionDemoPage contains one demo where user entering name in textfield , only if he keeps the name as shiva, request is sent to server
+else result in precondition failure and request is not sent to server
+

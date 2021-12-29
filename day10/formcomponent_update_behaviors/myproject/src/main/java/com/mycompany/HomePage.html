@@ -8,12 +8,18 @@
 	<form wicket:id="form">
         <span>	Enter Name</span> <input wicket:id="name">
 		<br>
+		<div wicket:id="checkGroup">
+		<span>Want Tea?</span><input wicket:id="tea" type="checkbox">
+		</div>
 		<button wicket:id="btn">Submit</button>
 	</form>
 
 	<br>
 	Name entered is <span wicket:id="nameVal"></span>
+    <br>
+     <span wicket:id="teaVal"></span>
 
+    <br>
 	<div wicket:id="feedback"></div>
 
 	</body>
