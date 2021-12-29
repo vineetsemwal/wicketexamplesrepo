@@ -1,19 +1,12 @@
 package com.mycompany;
 
-import org.apache.wicket.Page;
-import org.apache.wicket.RestartResponseException;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.form.AjaxButton;
-import org.apache.wicket.feedback.ErrorLevelFeedbackMessageFilter;
 import org.apache.wicket.feedback.ExactLevelFeedbackMessageFilter;
 import org.apache.wicket.feedback.FeedbackMessage;
 import org.apache.wicket.markup.html.WebMarkupContainer;
-import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
-import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.markup.html.form.TextField;
-import org.apache.wicket.markup.html.link.BookmarkablePageLink;
-import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.*;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
@@ -35,7 +28,8 @@ public class HomePage extends WebPage {
         super(parameters);
     }
 
-     private Product product=new Product();
+     private Product formsProduct =new Product();
+     private Product product;
 
     private boolean productAdded;
     private FeedbackPanel failureFeedbackPanel,successFeedbackPanel;
@@ -46,13 +40,14 @@ public class HomePage extends WebPage {
     @Override
     protected void onInitialize() {
         super.onInitialize();
-        IModel<Product>model= new Model<>(product);
-        add(new ProductForm("productForm",model));
+        IModel<Product>formsModel= LambdaModel.<Product>of(()-> formsProduct,(newProduct)-> formsProduct =newProduct);
+        add(new ProductForm("productForm",formsModel));
         add(failureFeedbackPanel=new FeedbackPanel("feedbackFail",new ExactLevelFeedbackMessageFilter(FeedbackMessage.ERROR)));
         add(successFeedbackPanel=new FeedbackPanel("feedbackWin", new ExactErrorLevelFilter(FeedbackMessage.SUCCESS)));
        failureFeedbackPanel.setOutputMarkupPlaceholderTag(true);
        successFeedbackPanel.setOutputMarkupPlaceholderTag(true);
-        add( productDetailsContainer=new ProductDetailsContainer("productDetails",model));
+       IModel<Product>detailsModel=LambdaModel.<Product>of(()->product,(newProduct)->product=newProduct);
+        add( productDetailsContainer=new ProductDetailsContainer("productDetails",detailsModel));
 
     }
 
@@ -88,16 +83,17 @@ public class HomePage extends WebPage {
         private TextField<Double>priceField;
         public ProductForm(String id, IModel<Product>model){
             super(id,model);
+            HomePage.this.setOutputMarkupPlaceholderTag(true);
         }
 
         @Override
         protected void onInitialize() {
             super.onInitialize();
-            TextField<String>nameField=new TextField<>("name",LambdaModel.of(getModelObject()::getName,getModelObject()::setName));
+            TextField<String>nameField=new TextField<>("name",LambdaModel.<String>of(()-> formsProduct.getName(),(newName)->formsProduct.setName(newName)));
              nameField.setRequired(true);
              nameField.add(StringValidator.exactLength(5));
              add(nameField);
-             priceField=new TextField<>("price",LambdaModel.of(getModelObject()::getPrice,getModelObject()::setPrice));
+             priceField=new TextField<>("price",LambdaModel.<Double>of(()->formsProduct.getPrice(),(newPrice)->formsProduct.setPrice(newPrice)));
              add(priceField);
              priceField.setRequired(true);
              priceField.setType(Double.class);
@@ -123,11 +119,14 @@ public class HomePage extends WebPage {
             add(new AjaxButton("btn"){
                 @Override
                 protected void onSubmit(AjaxRequestTarget target) {
-                    Product product=ProductForm.this.getModelObject();
-                    System.out.println("inside onsubmit id"+product.getId()+"-name-"+product.getName()+"-"+product.getPrice());
+                    Product modelObject=ProductForm.this.getModelObject();
+                    System.out.println("inside onsubmit id"+modelObject.getId()+"-name-"+modelObject.getName()+"-"+modelObject.getPrice());
                     productAdded=true;
                     success("Thankyou, product successfully added");
                     productAdded=true;
+                    HomePage.this.product=formsProduct;
+                    formsProduct =new Product();
+                    target.add(ProductForm.this);
                     target.add(successFeedbackPanel);
                     target.add(failureFeedbackPanel);
                     target.add(productDetailsContainer);
