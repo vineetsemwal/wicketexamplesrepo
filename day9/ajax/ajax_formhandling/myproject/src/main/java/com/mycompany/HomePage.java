@@ -131,6 +131,7 @@ public class HomePage extends WebPage {
                     target.add(successFeedbackPanel);
                     target.add(failureFeedbackPanel);
                     target.add(productDetailsContainer);
+
                 }
 
                 @Override

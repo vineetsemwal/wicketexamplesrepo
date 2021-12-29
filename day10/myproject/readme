@@ -1,0 +1,5 @@
+
+The example shows how to clear the form inputs
+ internal api formcomponent.clearInput() or Form.clearInput() will not make formfields initialize to what we want
+
+We should set formcomponent's modelobject value to what we want foreg. blank string or null  
