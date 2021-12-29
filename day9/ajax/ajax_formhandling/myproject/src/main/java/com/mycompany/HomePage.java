@@ -71,9 +71,24 @@ public class HomePage extends WebPage {
         @Override
         protected void onInitialize() {
             super.onInitialize();
-            add(new Label("id",()->getModel().getObject().getId()));
-            add(new Label("name",()->getModel().getObject().getName()));
-            add(new Label("price",()->getModel().getObject().getPrice()));
+            add(new Label("id",()->{
+                if(getModel().getObject()==null){
+                    return null;
+                }
+                return getModel().getObject().getId();
+            }));
+            add(new Label("name",()->{
+                if(getModel().getObject()==null){
+                    return null;
+                }
+                return getModel().getObject().getName();
+            }));
+            add(new Label("price",()->{
+                if(getModel().getObject()==null){
+                    return null;
+                }
+                return getModel().getObject().getPrice();
+            }));
         }
     }
 
