@@ -1,6 +1,7 @@
 package com.mycompany;
 
 import org.apache.wicket.MetaDataKey;
+import org.apache.wicket.Session;
 import org.apache.wicket.request.Request;
 import org.apache.wicket.request.cycle.IRequestCycleListener;
 import org.apache.wicket.request.cycle.RequestCycle;
@@ -20,8 +21,7 @@ public class LoginTracker implements IRequestCycleListener {
 
 
     public static Customer getLoginCustomer() {
-        Customer customer = new Customer(1, "sourav");
-        return customer;
+      return new Customer(1,"sourav");
     }
 
 

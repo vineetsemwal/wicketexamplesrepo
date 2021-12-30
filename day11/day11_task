@@ -1,0 +1,23 @@
+
+
+Keep an in memory customer store
+
+1) Create CustomerLoginTracker (this should fetch customer and keep in the requestcycle)  
+
+2) Create LoginPage
+
+    form fields username , password , button fields
+
+    in onsubmit after verifying username, password is correct , redirect to CustomerDashboadPage
+    (make sure to bind session in onsumit before redirecting to next page)
+
+
+3) CustomerDashboardPage
+    this will display login user details, logged in customer object can be fetched from requestcycle metadata 
+
+
+
+
+
+
+    

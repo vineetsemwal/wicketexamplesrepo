@@ -9,6 +9,10 @@ public class CustomSession extends WebSession {
         super(request);
     }
 
+    public static CustomSession get(){
+        return (CustomSession) Session.get();
+    }
+
     private int count;
 
     public int getCount() {
