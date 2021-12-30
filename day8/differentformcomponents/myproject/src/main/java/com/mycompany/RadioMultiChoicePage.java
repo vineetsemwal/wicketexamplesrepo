@@ -107,7 +107,8 @@ public class RadioMultiChoicePage extends WebPage {
          IModel<Language>radioModel= LambdaModel.of(this::getChosen,this::setChosen);
          multiChoice=new RadioChoice<>("multi",radioModel,choices,new LanguageChoiceRenderer());
          add(multiChoice);
-         multiChoice.setSuffix("<br>");
+         multiChoice.setPrefix("<div>");
+         multiChoice.setSuffix("</div>");
          add(new Button("submit"));
      }
 
