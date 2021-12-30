@@ -34,6 +34,8 @@ public class WicketApplication extends WebApplication
 		super.init();
         mountPage("sessionmetadata", DemoSessionMetaDataPage.class);
 		mountPage("customsession", DemoCustomSessionPage.class);
+
+		getSessionListeners().add(new SessionListener());
 	}
 
 	@Override
