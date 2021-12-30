@@ -1,51 +1,43 @@
 package com.mycompany;
 
 import org.apache.wicket.Component;
-import org.apache.wicket.Page;
-import org.apache.wicket.RestartResponseException;
 import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.ajax.attributes.AjaxRequestAttributes;
 import org.apache.wicket.ajax.form.AjaxFormChoiceComponentUpdatingBehavior;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
-import org.apache.wicket.ajax.form.AjaxFormSubmitBehavior;
-import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.ajax.markup.html.form.AjaxButton;
-import org.apache.wicket.markup.html.basic.MultiLineLabel;
-import org.apache.wicket.markup.html.form.*;
-import org.apache.wicket.markup.html.link.BookmarkablePageLink;
-import org.apache.wicket.markup.html.link.Link;
+import org.apache.wicket.markup.html.WebPage;
+import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.form.CheckBoxMultipleChoice;
+import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
-import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LambdaModel;
-import org.apache.wicket.model.Model;
 import org.apache.wicket.model.util.ListModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
-import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.validation.validator.StringValidator;
-import org.danekja.java.util.function.serializable.SerializableConsumer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
-public class HomePage extends WebPage {
+public class MultiChoicePage extends WebPage {
     private static final long serialVersionUID = 1L;
 
-    private static final Logger log = LoggerFactory.getLogger(HomePage.class);
+    private static final Logger log = LoggerFactory.getLogger(MultiChoicePage.class);
 
-    public HomePage(final PageParameters parameters) {
+    public MultiChoicePage(final PageParameters parameters) {
         super(parameters);
     }
 
     private String name, nameVal;
 
-    private boolean tea,teaVal;
+    private List<String>choicesModelObject=new ArrayList<>();
 
-    private Component nameLabel,checkLabel;
+    private Component nameLabel, teaLabel,coffeeLabel;
 
     private FeedbackPanel feedbackPanel;
 
@@ -53,12 +45,20 @@ public class HomePage extends WebPage {
     protected void onInitialize() {
         super.onInitialize();
         add(nameLabel = new Label("nameVal", () -> nameVal).setOutputMarkupPlaceholderTag(true));
-        add(checkLabel= new Label("teaVal", () -> {
-            if(teaVal){
+        add(teaLabel = new Label("teaVal", () -> {
+            if(choicesModelObject.contains("tea")){
                 return "tea chosen";
             }
             return "tea not chosen";
         }).setOutputMarkupPlaceholderTag(true));
+
+        add(coffeeLabel = new Label("coffeeVal", () -> {
+            if(choicesModelObject.contains("coffee")){
+                return "coffee chosen";
+            }
+            return "coffee not chosen";
+        }).setOutputMarkupPlaceholderTag(true));
+
         add(new NameForm("form"));
         feedbackPanel = new FeedbackPanel("feedback");
         feedbackPanel.setOutputMarkupPlaceholderTag(true);
@@ -67,7 +67,6 @@ public class HomePage extends WebPage {
     }
 
     class NameForm extends Form<Void> {
-       private CheckBox teaCheckBox;
 
         public NameForm(String id) {
             super(id);
@@ -99,24 +98,18 @@ public class HomePage extends WebPage {
 
             });
 
-
-            teaCheckBox=new CheckBox("tea",LambdaModel.<Boolean>of(()->tea,(newTea)->tea=newTea));
-            add(teaCheckBox);
-            teaCheckBox.setOutputMarkupPlaceholderTag(true);
-
-            teaCheckBox.add(new AjaxFormComponentUpdatingBehavior("change"){
-
+            List<String>choices= Arrays.asList("tea","coffee");
+            IModel<List<String>>checkGroupModel=new ListModel<>(choicesModelObject);
+            CheckBoxMultipleChoice<String>choicesField=new CheckBoxMultipleChoice<>("choices",checkGroupModel,choices);
+            add(choicesField);
+            choicesField.setSuffix("<br>");
+            choicesField.add(new AjaxFormChoiceComponentUpdatingBehavior() {
                 @Override
                 protected void onUpdate(AjaxRequestTarget target) {
-                  target.add(feedbackPanel);
-                  target.add(checkLabel);
-                  teaVal=tea;
-                  if(tea){
-                    feedbackPanel.success("Good, you have chosen tea");
-                  }
+                    feedbackPanel.success("you have chosen "+choicesModelObject);
+                    target.add(feedbackPanel,teaLabel,coffeeLabel);
                 }
             });
-
             add(new AjaxButton("btn") {
                 @Override
                 protected void onSubmit(AjaxRequestTarget target) {
