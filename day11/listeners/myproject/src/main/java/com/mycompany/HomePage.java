@@ -16,17 +16,17 @@ public class HomePage extends WebPage {
 
     private static final MetaDataKey<Integer>pageKey=new MetaDataKey<Integer>(){};
 
+
     public HomePage(final PageParameters parameters) {
         super(parameters);
         System.out.println("inside HomePge ctr");
-        setStatelessHint(false);
+        //setStatelessHint(false);
     }
 
     @Override
     protected void onConfigure() {
         super.onConfigure();
         System.out.println("inside homepage onconfigure");
-
       getOrSetPageRequestCount();
 
     }
