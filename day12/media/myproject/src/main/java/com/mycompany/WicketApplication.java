@@ -27,10 +27,8 @@ public class WicketApplication extends WebApplication {
     @Override
     public void init() {
         super.init();
-        mountResource("/style1", new Style1Reference());
-        mountResource("/style2", Style2Reference.get());
-        mountResource("/js1", new Javascript1Reference());
-        mountResource("/jquery", getJavaScriptLibrarySettings().getJQueryReference());
+       mountPage("image2",ImagePage2.class);
+       mountPage("image3",ImagePage3.class);
 
     }
 
