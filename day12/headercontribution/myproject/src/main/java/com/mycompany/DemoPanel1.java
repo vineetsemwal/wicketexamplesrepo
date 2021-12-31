@@ -1,16 +1,24 @@
 package com.mycompany;
 
-import org.apache.wicket.markup.head.CssHeaderItem;
-import org.apache.wicket.markup.head.IHeaderResponse;
-import org.apache.wicket.markup.head.JavaScriptHeaderItem;
+import org.apache.wicket.markup.head.*;
+import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.request.resource.JavaScriptResourceReference;
 import org.apache.wicket.request.resource.ResourceReference;
 
 public class DemoPanel1 extends Panel {
-
+   private Label label;
     public DemoPanel1(String id){
         super(id);
+    }
+
+    @Override
+    protected void onInitialize() {
+        super.onInitialize();
+
+        add(label=new Label("label","click me!"));
+       label.setOutputMarkupPlaceholderTag(true);
+
     }
 
     @Override
@@ -22,6 +30,7 @@ public class DemoPanel1 extends Panel {
         response.render(JavaScriptHeaderItem.forReference(jqueryRef));
         ResourceReference javascrip1Ref=new Javascript1Reference();
         response.render(JavaScriptHeaderItem.forReference(javascrip1Ref));
-
+        //response.render(OnDomReadyHeaderItem.forScript("alert('page loading up')"));
+        response.render(OnEventHeaderItem.forScript(label.getMarkupId(),"click","alert('i just got clicked')"));
     }
 }

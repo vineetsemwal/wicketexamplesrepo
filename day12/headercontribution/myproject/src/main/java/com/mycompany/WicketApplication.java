@@ -1,8 +1,10 @@
 package com.mycompany;
 
 import org.apache.wicket.RuntimeConfigurationType;
+import org.apache.wicket.css.ICssCompressor;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.protocol.http.WebApplication;
+import org.apache.wicket.resource.CompositeCssCompressor;
 
 /**
  * Application object for your web application.
@@ -29,10 +31,11 @@ public class WicketApplication extends WebApplication {
         mountResource("/style2", Style2Reference.get());
         mountResource("/js1", new Javascript1Reference());
         mountResource("/jquery", getJavaScriptLibrarySettings().getJQueryReference());
+
     }
 
     @Override
     public RuntimeConfigurationType getConfigurationType() {
-        return RuntimeConfigurationType.DEVELOPMENT;
+        return RuntimeConfigurationType.DEPLOYMENT;
     }
 }
