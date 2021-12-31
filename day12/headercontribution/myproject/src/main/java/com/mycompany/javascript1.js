@@ -1,0 +1,5 @@
+
+
+function welcome(){
+return "hello";
+}
