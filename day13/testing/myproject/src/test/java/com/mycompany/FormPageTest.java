@@ -39,6 +39,7 @@ public class FormPageTest {
         formTester.setValue("name","mohan");
         formTester.setValue("age","28");
         formTester.submit("btn");
+        tester.assertNoFeedbackMessage(FeedbackMessage.ERROR);
         tester.assertFeedbackMessages(new ExactLevelFeedbackMessageFilter(FeedbackMessage.SUCCESS),"successful");
         tester.assertModelValue("form:age",28);
         tester.assertModelValue("form:name","mohan");
