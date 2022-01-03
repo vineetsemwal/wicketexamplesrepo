@@ -2,6 +2,7 @@ package com.mycompany;
 
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.image.Image;
+import org.apache.wicket.markup.html.media.video.Video;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.request.resource.ContextRelativeResourceReference;
 import org.apache.wicket.request.resource.ResourceReference;
@@ -27,6 +28,7 @@ public class ImagePage3 extends WebPage {
 
         ResourceReference imgRef2=new MyFileSystemResourceReference("japan.jpg");
         add(new Image("img2",imgRef2));
+
 
     }
 }
