@@ -18,8 +18,15 @@ public class DemoPanelTest {
     public void testRender(){
         DemoPanel panel=new DemoPanel("panel");
         panel=tester.startComponentInPage(panel);
+
+        String expectedMsg1=panel.getString("msg1");
+        String expectedMsg2=panel.getString("msg2");
+        System.out.println("msg1="+expectedMsg1);
+        tester.assertLabel("panel:msg1",expectedMsg1);
+        tester.assertLabel("panel:msg2",expectedMsg2);
         tester.assertLabel("panel:counter","0");
         tester.assertComponent("panel:increment", AjaxLink.class);
+
     }
 
     @Test
