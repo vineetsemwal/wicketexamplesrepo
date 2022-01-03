@@ -18,10 +18,14 @@ public class WicketApplication {
                 .sources(WicketApplication.class)
                 .run(args);
         WebApplication app = context.getBean(WebApplication.class);
+        //
+        //for enabling resource polling, no need to reload classes/restart project if there is change in resource like markup etc
+        //
         app.getResourceSettings().getResourceFinders().add(new WebApplicationPath(app.getServletContext(), "markup"));
         app.getResourceSettings().setResourcePollFrequency(Duration.seconds(10));
        // app.setConfigurationType(RuntimeConfigurationType.DEPLOYMENT);
-       // app.mountPage("/sample2",SamplePage.class);
+       //mount page without annotation
+        // app.mountPage("/sample2",SamplePage.class);
     }
 
 }

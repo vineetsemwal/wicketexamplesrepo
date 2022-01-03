@@ -5,7 +5,7 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.wicketstuff.annotation.mount.MountPath;
 
 
-//@MountPath("/sample")
+@MountPath("/sample")
 public class SamplePage extends WebPage {
 
     @Override
